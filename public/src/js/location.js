@@ -68,10 +68,22 @@ class Location extends React.Component {
                  {/* <div id="map-canvas"> </div>
                 <button onClick={this.getMyLocation.bind(this)}> Get my Location</button>
                 <div id="location"></div> */}
+                <div id ="search_main_container">
+                <ul className= "centerWrapper">
+                <li className="geolocate inlineBlock">
+                      <Geolocate id ="city_location" currentLat={this.state.currentLat} currentLong={this.state.currentLong} otherId="main_input" className="inlineBlock"></Geolocate>
+                </li>
+               <li className="location_input inlineBlock">
+               <div className="">
+                    <input id="main_input" />
+                </div>
+                </li>
+                <li>
+                    <div id="search_button">Search</div>
+                </li>
                 
-                <Geolocate id ="city_location" currentLat={this.state.currentLat} currentLong={this.state.currentLong} otherId="main_input"></Geolocate>
-                {/* <Geolocate id="main_location" currentLat={this.state.currentLat} currentLong={this.state.currentLong}></Geolocate> */}
-                <input id="main_input" />
+                </ul>
+                </div>
             </section>
         )
     }

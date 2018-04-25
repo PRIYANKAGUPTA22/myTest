@@ -17,16 +17,15 @@ class Geolocate extends React.Component {
 
     var scriptElement = document.getElementById("scriptSection");
     var scriptTag= document.createElement("script");
-    window.initAutocomplete = function() {
+   var initAutocomplete = function() {
        _this.autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById(_this.props.id)),
             {types: ['geocode']});
     };
-    // scriptTag.setAttribute('src',"https://maps.googleapis.com/maps/api/js?key=AIzaSyD_LF7qNfJ-u816W79jkL2aWCi5BGl81mw&libraries=places&callback=initAutocomplete");
     scriptTag.setAttribute('src',"https://maps.googleapis.com/maps/api/js?key=AIzaSyD_LF7qNfJ-u816W79jkL2aWCi5BGl81mw&libraries=places");
     scriptTag.setAttribute('type',"text/javascript");
     scriptTag.onload = function(){
-        window.initAutocomplete();
+        initAutocomplete();
         _this.geolocate();
     }
     scriptElement.appendChild(scriptTag);
@@ -43,10 +42,8 @@ geolocate() {
     });
     this.autocomplete.setBounds(circle.getBounds());
     this.autocomplete.addListener('place_changed',function(){
-        console.log("place changed");
         var data = {lat:_this.autocomplete.getPlace().geometry.location.lat(),
             lng:_this.autocomplete.getPlace().geometry.location.lng()};
-        // postMan.publish("geolocate_place_changed",data);
         _this.mainLocationAutoComplete =  new google.maps.places.Autocomplete(
             (document.getElementById(_this.props.otherId)),
             {types: ['geocode']});
@@ -59,17 +56,17 @@ geolocate() {
     });
 
 }
-render(){
-       
+render(){       
         return(
-            <section>
-                <div class="">
-                    <input id = {this.props.id} type="text" placeholder='Enter City Name'/>
-
+            // <section className={this.props.className}>
+               
+                <div className="">                                            
+                    <input id = {this.props.id} type="text" placeholder='Please Type a Location..'/>
+                    <div id="scriptSection"></div> 
                 </div>
-                <div id="scriptSection"></div>
+                            
             
-            </section>
+            // </section>
         )
     }
 };
